@@ -10,7 +10,7 @@ val allScalaVersions = scala2 ::: scala3
 
 ThisBuild / name := "reactify"
 ThisBuild / organization := "com.outr"
-ThisBuild / version := "4.0.6"
+ThisBuild / version := "4.0.7"
 ThisBuild / scalaVersion := "2.13.6"
 ThisBuild / crossScalaVersions := allScalaVersions
 ThisBuild / scalacOptions += "-deprecation"
@@ -18,8 +18,12 @@ ThisBuild / scalacOptions += "-deprecation"
 ThisBuild / publishTo := sonatypePublishTo.value
 ThisBuild / sonatypeProfileName := "com.outr"
 ThisBuild / publishMavenStyle := true
-ThisBuild / licenses := Seq("MIT" -> url("https://github.com/outr/reactify/blob/master/LICENSE"))
-ThisBuild / sonatypeProjectHosting := Some(xerial.sbt.Sonatype.GitHubHosting("outr", "reactify", "matt@outr.com"))
+ThisBuild / licenses := Seq(
+  "MIT" -> url("https://github.com/outr/reactify/blob/master/LICENSE")
+)
+ThisBuild / sonatypeProjectHosting := Some(
+  xerial.sbt.Sonatype.GitHubHosting("outr", "reactify", "matt@outr.com")
+)
 ThisBuild / homepage := Some(url("https://github.com/outr/reactify"))
 ThisBuild / scmInfo := Some(
   ScmInfo(
@@ -28,7 +32,12 @@ ThisBuild / scmInfo := Some(
   )
 )
 ThisBuild / developers := List(
-  Developer(id="darkfrog", name="Matt Hicks", email="matt@matthicks.", url=url("http://matthicks.com"))
+  Developer(
+    id = "darkfrog",
+    name = "Matt Hicks",
+    email = "matt@matthicks.",
+    url = url("http://matthicks.com")
+  )
 )
 
 val testyVersion: String = "1.0.6"
@@ -45,13 +54,15 @@ lazy val reactify = crossProject(JVMPlatform, JSPlatform, NativePlatform)
   )
   .jsSettings(
     crossScalaVersions := allScalaVersions,
-    Test / scalaJSLinkerConfig ~= { _.withModuleKind(ModuleKind.CommonJSModule) }
+    Test / scalaJSLinkerConfig ~= {
+      _.withModuleKind(ModuleKind.CommonJSModule)
+    }
   )
   .jvmSettings(
     crossScalaVersions := allScalaVersions
   )
   .nativeSettings(
-    crossScalaVersions := scala2,
+    crossScalaVersions := scala2
   )
 
 //lazy val benchmark = project

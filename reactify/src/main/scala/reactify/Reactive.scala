@@ -100,7 +100,7 @@ trait Reactive[T] {
     * @return Future[T]
     */
   def future(condition: T => Boolean = _ => true): Future[T] = {
-    val promise = Promise[T]
+    val promise = Promise[T]()
     once(promise.success, condition)
     promise.future
   }
